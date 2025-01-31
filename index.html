@@ -14,7 +14,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        
+
 
         body {
             display: flex;
@@ -178,7 +178,7 @@
             margin-left: 20px;
         }
 
-        .lock-window{
+        .lock-window {
             display: none;
             justify-content: center;
             align-items: center;
@@ -190,25 +190,27 @@
             top: 0px;
             left: 0px;
         }
-        .lock-window .form{
+
+        .lock-window .form {
             display: flex;
             flex-direction: column;
             gap: 20px;
-            
-            input{
+
+            input {
                 padding: 10px 20px;
                 outline: none;
                 border: none;
             }
-            button{
-                padding: 10px 12px 12px 12px; 
+
+            button {
+                padding: 10px 12px 12px 12px;
                 font-size: 20px;
                 border-radius: 20px;
                 border: none;
                 font-weight: 500;
                 background-color: green;
                 color: #fff;
-                
+
             }
         }
     </style>
@@ -266,607 +268,591 @@
         const result = document.querySelector(".Result");
         const resultquiz = document.querySelector(".resultQuiz");
         let password;
-        if(localStorage.getItem("data")){
+        if (localStorage.getItem("data")) {
             password = JSON.parse(localStorage.getItem("data"));
-        }else{
-            password = [{parol: "CGAIX", status: false },{parol: "ASMBA", status: false },{parol: "SESLO", status: false },{parol: "QAFRI", status: false },{parol: "PENDIR",status: "always-open" }];
+        } else {
+            password = [{ parol: "CGAIX", status: false }, { parol: "ASMBA", status: false }, { parol: "SESLO", status: false }, { parol: "QAFRI", status: false }, { parol: "PENDIR", status: "always-open" }];
         }
 
-        localStorage.setItem("data",JSON.stringify(password));
+        localStorage.setItem("data", JSON.stringify(password));
 
-        function checkPassword (btn) {
+        function checkPassword(btn) {
             let input = (btn.parentElement).querySelector("input");
             password = JSON.parse(localStorage.getItem("data"));
             password.forEach(obj => {
-                if(obj.parol == input.value){
-                    if(obj.status == false){
+                if (obj.parol == input.value) {
+                    if (obj.status == false) {
                         (btn.parentElement).parentElement.style.display = "none";
                         obj.status = true;
-                    }else if(obj.status == true){
+                    } else if (obj.status == true) {
                         input.value = ""
                         input.placeholder = "Bu parol istifadə olundu"
                     }
-                    if(obj.status == "always-open"){
-            
+                    if (obj.status == "always-open") {
+
                         (btn.parentElement).parentElement.style.display = "none";
                     }
                 }
             });
-            localStorage.setItem("data",JSON.stringify(password));
+            localStorage.setItem("data", JSON.stringify(password));
 
-            
+
         }
-        
+
         const Cavab = [];
         let DATA = [
+            {
+                "question": "1. Which piece of advice is good?",
+                "options": {
+                    "A": "Don’t get enough sleep.",
+                    "B": "Be cruel to domestic animals.",
+                    "C": "Be patient if you want to achieve your aim.",
+                    "D": "Never follow any traffic signs.",
+                    "E": "Never respect the old."
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "2. Choose the logically correct ending. I am tired because ...",
+                "options": {
+                    "A": "I haven’t had much work.",
+                    "B": "I haven’t trained much.",
+                    "C": "I have had a sleepless night.",
+                    "D": "I have had a good rest.",
+                    "E": "Everybody helped me with my work."
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "3. Choose the correct variant. -Tell me what your grandson likes. -...",
+                "options": {
+                    "A": "He’s as sweet as honey.",
+                    "B": "He looks like his father.",
+                    "C": "Plump and fair.",
+                    "D": "All his friends like Mathew.",
+                    "E": "Watching films."
+                },
+                "correct_answer": "E"
+            },
+            {
+                "question": "4. Choose the logically correct ending. In spite of the terrible weather...",
+                "options": {
+                    "A": "the boys stayed at home.",
+                    "B": "the children went out to play.",
+                    "C": "they met a lot of difficulties during their journey.",
+                    "D": "the explorers weren’t able to reach the mountains.",
+                    "E": "she felt very bad."
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "5. Choose the logically correct ending. Susan liked me and I liked her, and...",
+                "options": {
+                    "A": "we stopped communicating with each other.",
+                    "B": "we began to hate each other.",
+                    "C": "soon we became great friends.",
+                    "D": "we quarreled very often.",
+                    "E": "we began to hurt."
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "6. Choose the logically correct ending. 'He never breaks the law' means...",
+                "options": {
+                    "A": "he doesn’t follow the law.",
+                    "B": "he always acts against the law.",
+                    "C": "he hardly obeys the law.",
+                    "D": "he never respects the law.",
+                    "E": "he always keeps to the law."
+                },
+                "correct_answer": "E"
+            },
+            {
+                "question": "7. Choose the logically correct ending. 'Jack’s a very fearless fellow' means...",
+                "options": {
+                    "A": "he’s extremely anxious.",
+                    "B": "he isn’t brave.",
+                    "C": "he’s naturally curious.",
+                    "D": "he’s very courageous.",
+                    "E": "he’s fearful about his future."
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "8. Choose the logically correct ending. Jack came to my birthday party though...",
+                "options": {
+                    "A": "He was eager to see everyone.",
+                    "B": "He had a lot of free time.",
+                    "C": "We’re great friends.",
+                    "D": "He didn’t feel well.",
+                    "E": "He had expected it impatiently."
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "9. Choose the logically correct variant. If you are astonished at something, you may say:",
+                "options": {
+                    "A": "What a surprise.",
+                    "B": "Never mind.",
+                    "C": "That’s such a common thing.",
+                    "D": "It’s not surprising at all.",
+                    "E": "With pleasure."
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "10. Choose the logically correct ending. A devoted friend is someone...",
+                "options": {
+                    "A": "you can always trust.",
+                    "B": "who is not honest.",
+                    "C": "who is never truthful.",
+                    "D": "who enjoys doing harm to you.",
+                    "E": "who always betrays you."
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "11. Choose the correct logical ending\nWhat do you want to do when you say :”I’m sorry , I didn’t mean to hurt you”",
+                "options": {
+                    "A": "to offer",
+                    "B": "to thank",
+                    "C": "to apologize",
+                    "D": "to invite",
+                    "E": "to refuse"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "12. Choose the correct logical ending\nWhen you are disagree with somebody you say: “...”",
+                "options": {
+                    "A": "I think so",
+                    "B": "Sure",
+                    "C": "Certainly",
+                    "D": "I’m against of it",
+                    "E": "That’s right"
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "13. Choose the correct translation.\nUniversitetə daxil olmaq üçün şagirdlər çox çalışmalıdırlar.\nДля того чтобы поступить в университет студенты должны много учиться.",
+                "options": {
+                    "A": "The students must study hard to enter the University.",
+                    "B": "The students study hard to go to the University.",
+                    "C": "The students goes to the University to study hard.",
+                    "D": "The students mustn’t study hard to enter the University.",
+                    "E": "The students studied hard to go to the University."
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "14. Choose the correct translation.\nStolun üstündə çoxlu apelsin şirəsi və 1 fincan vardı.\nНа столе было много апельсинового сока  и 1 чашка.",
+                "options": {
+                    "A": "There were a lot of orange juice and a cup on the table.",
+                    "B": "There is a lot of orange juice and a cup on the table.",
+                    "C": "There are a lot of orange juice and a cup on the table.",
+                    "D": "There will be a lot of orange juice and a cup on the table.",
+                    "E": "There was a lot of orange juice and a cup on the table."
+                },
+                "correct_answer": "E"
+            },
+            {
+                "question": "15. Choose the correct translation.\nHəyatın boyu etdiyin ən qeyri-adi hərəkət hansıdır?\nКакой самый необычный поступок вы совершили за свою жизнь?",
+                "options": {
+                    "A": "What is the most unusual thing you have ever done?",
+                    "B": "What is more unusual thing you have ever done?",
+                    "C": "What is an unusual thing you have ever done?",
+                    "D": "What is the best unusual thing you have never done?",
+                    "E": "What is the most unusual thing you have never done?"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "16. Choose the correct translation.\nTom yeni işinə keçən həftə başladı.\nТом приступил к новой работе на прошлой неделе.",
+                "options": {
+                    "A": "Tom started his new job last week.",
+                    "B": "Tom has started his new job last week.",
+                    "C": "Tom started his new job next week.",
+                    "D": "Tom starts his new job this week.",
+                    "E": "Tom was starting his new job last week."
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "17. Choose the correct translation.\nKimsə gecəyarı dükana daxil olmaq istəyirdi buna görə də mən polis çağırdım.\nКто-то хотел проникнуть в магазин посреди ночи, и поэтому я вызвал полицию.",
+                "options": {
+                    "A": "Anybody was trying to break into the shop so I called the police.",
+                    "B": "Somebody was trying to break into the shop so I called the police.",
+                    "C": "Somebody was trying to break into the shop so I called a police.",
+                    "D": "Somebody were trying to break into the shop so I called the police.",
+                    "E": "Nobody was trying to break into the shop so I called the police."
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "18. Choose the correct translation.\nAnan mənə deyir ki sen kitab oxumağı xoşlamırsan.\nМама говорит мне, что ты не любишь читать",
+                "options": {
+                    "A": "Your mother says me that you don’t like reading books.",
+                    "B": "Your mother talks me that you don’t like reading books.",
+                    "C": "Your mother tells me that you don’t like reading books.",
+                    "D": "Your mother speaks me that you don’t like reading books.",
+                    "E": "Your mother tells me that she doesn’t like reading books."
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "19. Choose the correct translation.\nStolun üstündə çoxlu pul var idi.\nНа столе было много денег.",
+                "options": {
+                    "A": "There was a lot of money on the table.",
+                    "B": "There is much money on the table.",
+                    "C": "There were a lot of money on the table.",
+                    "D": "There was many money on the table.",
+                    "E": "There are a lot of money on the table."
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "20. Choose the correct translation.\nƏgər o ünvanı bilsə, sənə verəcək.\nЕсли он знает адрес, он даст его вам.",
+                "options": {
+                    "A": "If he knew the address, he would give it to you.",
+                    "B": "If he will know the address, he will give it to you.",
+                    "C": "If he know the address, he will give it to you.",
+                    "D": "If he knows the address, he will give it to you.",
+                    "E": "If he’s known the address he will give it to you."
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "21. Choose the correct translation. Onun istədiyi kitab kitabxanadadır. Книга, которую он хочет, есть в библиотеке.",
+                "options": {
+                    "A": "The book which he wants is in the library.",
+                    "B": "The book which he want is in the library.",
+                    "C": "A book which he wants is in the library.",
+                    "D": "The book whom he wants is in the library.",
+                    "E": "The book is in the library."
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "22. Choose the correct translation. Nə heyvanlar, nə də insanlar xilas oldular. Ни люди, ни животные не спаслись.",
+                "options": {
+                    "A": "Neither animals or people was able to survive.",
+                    "B": "Neither animals or people were able to survive.",
+                    "C": "Either animals or people were able to survive.",
+                    "D": "Either animals nor people were able to survive.",
+                    "E": "Neither animals nor people were able to survive."
+                },
+                "correct_answer": "E"
+            },
+            {
+                "question": "23. Choose the correct translation. Buz beton ilə eyni bərkliyə malikdir. Лед имеет такую же твердость, как и бетон.",
+                "options": {
+                    "A": "Ice has the same hardness as concrete.",
+                    "B": "Ice has the same hard as concrete.",
+                    "C": "Ice is hardly the same as concrete.",
+                    "D": "Ice is not so hard as concrete.",
+                    "E": "Ice is harder as concrete."
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "24. Choose the correct translation. Mənim atam isti yay günündə balıq tutmağı hər şeydən çox xoşlayır. Для моего отца нет ничего лучше, чем ловить рыбу в жаркий летний день.",
+                "options": {
+                    "A": "My father likes nothing better than fishing on a hot summer days.",
+                    "B": "My father likes everything except fishing.",
+                    "C": "My father likes hot summer days.",
+                    "D": "My father likes nothing but hot days.",
+                    "E": "My father thinks everything is better than fishing on a hot summer day."
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "25. Choose the correct translation. Dünyada ən çox yayılmış ad Məhəmməd adıdır. Самое распространенное имя в мире Магомед.",
+                "options": {
+                    "A": "Most common name in the world is Mohammad.",
+                    "B": "The more common name in the world is Mohammad.",
+                    "C": "The most common name in the world is Mohammad.",
+                    "D": "The commonest name in the world is Mohammad.",
+                    "E": "ERROR blyaaat"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "26. Choose the correct logical ending. Kate was so pleased with her son’s results that.......",
+                "options": {
+                    "A": "she got angry with him", 
+                    "B": "she decided to thank his teachers",
+                    "C": "she decided to punish him",
+                    "D": "she scolded him",
+                    "E": "she didn’t praise him"
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "27. Choose the correct article. … Internet started in … 1969 in … USA.",
+                "options": {
+                    "A": "The, the, the",
+                    "B": "The, -, -",
+                    "C": "An, the, the",
+                    "D": "The, -, the",
+                    "E": "-, the, -"
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "28. Choose the correct words. Being ... is very ... .",
+                "options": {
+                    "A": "ERROR blyaaat",
+                    "B": "overweight, healthy",
+                    "C": "punctual, unnecessary",
+                    "D": "loyal, important",
+                    "E": "obese, unhealthy"
 
-            {
-                "question": "1. Yüksək keyfiyyətli təsvirlərin saxlanılmasında hansı formatdan istifadə olunur?",
-                "options": {
-                    "A": "GIF",
-                    "B": "JPG",
-                    "C": "BMP",
-                    "D": "PNG",
-                    "E": "Tiff"
                 },
                 "correct_answer": "E"
             },
             {
-                "question": "2. Kompüter qrafikasının məqsədi nədir?",
+                "question": "29. Choose the correct logical ending. What do you want to do when you say :”I’m obliged to you”",
                 "options": {
-                    "A": "diaqramlar və cədvəllər üzərində işləmək",
-                    "B": "qrafiki alətlər üzərində işləmək üçündür",
-                    "C": "mətndə qrafiklər yaratmaq",
-                    "D": "təsvirlərin yaradılması metodunu öyrədir",
-                    "E": "İnternet-də işləmək üçündür"
+                    "A": "to offer",
+                    "B": "to apologize",
+                    "C": "to thank",
+                    "D": "to invite",
+                    "E": "to refuse"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "30. Choose the correct answer. What kind of person cannot become a good soldier?",
+                "options": {
+                    "A": "fearful",
+                    "B": "patriotic",
+                    "C": "fearless",
+                    "D": "brave",
+                    "E": "honest"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "31. Choose the correct variant. - How do you do? I’m James White. - … .",
+                "options": {
+                    "A": "Fine, thank you.",
+                    "B": "It’s very kind of you.",
+                    "C": "Well, not so bad.",
+                    "D": "How do you do?",
+                    "E": "Very well."
                 },
                 "correct_answer": "D"
             },
             {
-                "question": "3. Qrafiki redaktor proqramlarının əsas təyinatı nədir?",
+                "question": "32. Choose the correct variant. The trousers are too ... , get ... .",
                 "options": {
-                    "A": "mətnin qrafiki obrazını yaratmaq",
-                    "B": "qrafiki təsvirlərlə işləmək",
-                    "C": "şriftin növünü və şəklini redaktə etmək",
-                    "D": "diaqramları və cədvəlləri qurmaq",
-                    "E": "şəkil çəkmək"
-                },
-                "correct_answer": "B"
-            },
-            {
-                "question": "4. Çapa keyfiyyətli rəngli şəkil hazırlamaq üçün faylın ... dpi həllində olması vacibdir",
-                "options": {
-                    "A": "200-300 dpi",
-                    "B": "64-98 dpi",
-                    "C": "72 dpi",
-                    "D": "75 dpi",
-                    "E": "100-200 dpi"
-                },
-                "correct_answer": "A"
-            },
-            {
-                "question": "5. RGB modeli ...",
-                "options": {
-                    "A": "çatışmayan cəhəti ondan ibarətdir ki, nəzəri olaraq bəzi rəngləri əldə etmək olmur",
-                    "B": "additiv metodla işləyir",
-                    "C": "bütün rənglər 3 əsas rəngin (Red-qırmızı, Green-yaşıl, Blue-göy) qarışığından və onların çalarlarından yaranır",
-                    "D": "bütün cavablar doğrudur",
-                    "E": "əksər FK-lar və istifadə etdiyimiz televizorlar bu modellə işləyirlər"
-                },
-                "correct_answer": "D"
-            },
-            {
-                "question": "6. Təhlükəsiz palitrada neçə rəng çalarından istifadə olunur?",
-                "options": {
-                    "A": "2",
-                    "B": "256",
-                    "C": "255",
-                    "D": "216",
-                    "E": "16"
-                },
-                "correct_answer": "D"
-            },
-            {
-                "question": "7. GİF(Graphics İnterhange Format) neçə rəngçalarları əsasında təsvirlərin sıxılmış mühafizəsini təmin edir?",
-                "options": {
-                    "A": "258",
-                    "B": "254",
-                    "C": "256",
-                    "D": "257",
-                    "E": "252"
+                    "A": "close, a larger ones",
+                    "B": "loose, another ones",
+                    "C": "tight, a bigger pair",
+                    "D": "narrow, a wide ones",
+                    "E": "tight, a smaller pairs"
                 },
                 "correct_answer": "C"
             },
             {
-                "question": "8. Aşağıdakılardan hansı rastrlı qrafik redaktorların ad genişlənməsi deyil?",
+                "question": "33. Choose the correct variant. Good friends are ... .",
                 "options": {
-                    "A": "GIF",
-                    "B": "AI",
-                    "C": "CS",
-                    "D": "TIF",
-                    "E": "JPG"
-                },
-                "correct_answer": "C"
-            },
-            {
-                "question": "9. Corel Draw proqramında təsvirin kənarlarını hazır bəzəkli şablona çevirmək üçün ... əmrini seçmək lazımdır.",
-                "options": {
-                    "A": "Bitmaps→3D Effects→3D Rotate",
-                    "B": "Bitmaps→3D Effects→Page Curl",
-                    "C": "Bitmaps→Contour→Find Edges",
-                    "D": "Bitmaps→Creative→Vignette",
-                    "E": "Bitmaps→Creative→Frame"
-                },
-                "correct_answer": "E"
-            },
-            {
-                "question": "10. Corel Draw proqramında düzbucaqlı alətini seçib CTRL kombinasiyası ilə çəkəndə ... alınacaq.",
-                "options": {
-                    "A": "Üçbucaq",
-                    "B": "Kvadrat",
-                    "C": "Paraleloqram",
-                    "D": "Dördbucaq",
-                    "E": "Trapesiya"
-                },
-                "correct_answer": "B"
-            },
-            {
-                "question": "11. Adobe Photoshop proqramında yeni lay yaratmaq üçün hansı kombinasiyadan istifadə edirik?",
-                "options": {
-                    "A": "Alt+N",
-                    "B": "Ctrl+N",
-                    "C": "Shift+Ctrl+N",
-                    "D": "Tab+N",
-                    "E": "Shift+Alt+N"
-                },
-                "correct_answer": "C"
-            },
-            {
-                "question": "12. Adobe Photoshop proqramında Layer >>Layer style>> Drop Shadow?",
-                "options": {
-                    "A": "kölgə verir",
-                    "B": "işıq verir",
-                    "C": "damcı effekti verir",
-                    "D": "rəngi dəyişir",
-                    "E": "bütün cavablar səhfdir"
+                    "A": "helpful, close, devoted",
+                    "B": "cruel, polite, angry",
+                    "C": "rude, strict, nervous",
+                    "D": "kind, funny, selfish",
+                    "E": "gentle, serious, unjust"
                 },
                 "correct_answer": "A"
             },
             {
-                "question": "13. Adobe Acrobat Reader proqramı hansı iş üçün nəzərdə tutulub?",
+                "question": "34. Choose the correct variant. Luck has never left him. He is a very ... person.",
                 "options": {
-                    "A": "AAR fayllarının oxunması",
-                    "B": "DOC fayllarının redaktəsi",
-                    "C": "PDF fayllarının redaktəsi",
-                    "D": "DOC fayllarının redaktəsi",
-                    "E": "PDF fayllarının oxunması"
-                },
-                "correct_answer": "E"
-            },
-            {
-                "question": "14. 512x256 ölçüsündə olan 8 ədəd CMYK təsvir yaddaşda neçə MB yer tutar?",
-                "options": {
-                    "A": "2 MB",
-                    "B": "4 MB",
-                    "C": "8 MB",
-                    "D": "16 MB",
-                    "E": "32 MB"
-                },
-                "correct_answer": "B"
-            },
-            {
-                "question": "15. Həcmi 12Mb olan video informasiyanın ekranının 512x256 rejimində, 8 kadr/san sürətinə malik olduğunu bilərək 16 saniyəlik bu video faylin neçə rəng çalarından ibarət olduğunu tapın?",
-                "options": {
-                    "A": "64",
-                    "B": "6",
-                    "C": "32",
-                    "D": "64",
-                    "E": "16"
+                    "A": "lucky",
+                    "B": "unlucky",
+                    "C": "unhappy",
+                    "D": "luckily",
+                    "E": "hopeless"
                 },
                 "correct_answer": "A"
             },
             {
-                "question": "16. Həcmi 120Mb olan video informasiyanın ekranının 512x256 rejimində, 16 rəng tərtibinə malikdirsə, 2 dəqiqəlik bu video faylda kadrların 1 saniyədəki sürətini tapın.",
+                "question": "35. How many of the given words can be used in sentence? The book will give you some information about ancient ... . n\history, monuments, places, castles, towers",
                 "options": {
-                    "A": "24",
-                    "B": "12",
-                    "C": "32",
-                    "D": "16",
-                    "E": "64"
-                },
-                "correct_answer": "D"
-            },
-            {
-                "question": "17. Sarı və al-qırmızı subtraktiv rəngləri qarışdırdıqda ... rəng alınır:",
-                "options": {
-                    "A": "bənövşəyi",
-                    "B": "yaşıl",
-                    "C": "qırmızı",
-                    "D": "göy",
-                    "E": "boz"
-                },
-                "correct_answer": "C"
-            },
-            {
-                "question": "18. Müxtəlif rəngli işıq şüalarının birləşməsi nəticəsində yaranan rəng necə adlanır?",
-                "options": {
-                    "A": "additiv",
-                    "B": "subtraktiv",
-                    "C": "kompleks",
-                    "D": "toplam",
-                    "E": "yekun"
-                },
-                "correct_answer": "A"
-            },
-            {
-                "question": "19. Rəngin saflığını xarakterizə edən kəmiyyət necə adlanır?",
-                "options": {
-                    "A": "Hue",
-                    "B": "animation",
-                    "C": "PostScript",
-                    "D": "Nurbs",
-                    "E": "saturation"
-                },
-                "correct_answer": "E"
-            },
-            {
-                "question": "20. OpenOffice.org paketi Microsoft Office paketindən nə ilə fərqlənir?",
-                "options": {
-                    "A": "İşgüzar qrafikası ilə işləyir",
-                    "B": "Rastr qrafikası ilə işləyir",
-                    "C": "Elmi qrafikası ilə işləyir",
-                    "D": "Vektor qrafikası ilə işləyir",
-                    "E": "Konstruktor qrafikası ilə işləyir"
-                },
-                "correct_answer": "D"
-            },
-
-            {
-                "question": "21. Paint.net proqramının Quick Start pəncərəsində Open other… düyməsi nə üçün istifadə olunur?",
-                "options": {
-                    "A": "Yaddaşda olan qrafikanı açmaq üçün",
-                    "B": "Yeni fayl yaratmaq üçün",
-                    "C": "Buferində olan şəkili gətirmək üçün",
-                    "D": "Skanerdən şəkili oxutdurmaq üçün",
-                    "E": "Yaradılmış qrafikanı printerlə çap etmək üçün"
-                },
-                "correct_answer": "A"
-            },
-            {
-                "question": "22. Paint.net proqramının standart alətlər paneli üzərində yerləşən düymələr haqqında verilənlərdən biri yanlışdır:",
-                "options": {
-                    "A": "Copy – Obyektin üzünü köçürüb mübadilə buferinə yerləşdirir",
-                    "B": "Cut – Şəkli miqyaslaşdırır",
-                    "C": "Open – Yaddaşda saxlanmış faylı ekrana çıxarır",
-                    "D": "Import – Açıq olan fayla şəkili mədaxil edir",
-                    "E": "Zoom level – Şəkili miqyaslaşdırır"
-                },
-                "correct_answer": "B"
-            },
-            {
-                "question": "23. OpenOffice.org Draw proqramında Gluepoints alətlər paneli üzərində əyri üzərinə yeni redaktə düyünləri əlavə edir:",
-                "options": {
-                    "A": "Insert GluePoints",
-                    "B": "Exit Direction Left",
-                    "C": "Exit Direction Top",
-                    "D": "Exit Direction Right",
-                    "E": "Glue Point Relative"
-                },
-                "correct_answer": "A"
-            },
-            {
-                "question": "24. Kompyüter qrafikasına aid deyil:",
-                "options": {
-                    "A": "Rastr",
-                    "B": "Fine Reader",
-                    "C": "Vektor",
-                    "D": "Fraktal",
-                    "E": "Vektor və Rastr"
-                },
-                "correct_answer": "B"
-            },
-            {
-                "question": "25. İnternetdə kompyüter qrafikasının hansı növü tətbiq olunur?",
-                "options": {
-                    "A": "Bütün növləri",
-                    "B": "Vektor",
-                    "C": "Fraktal",
-                    "D": "Rastr",
-                    "E": "Heç biri"
-                },
-                "correct_answer": "D"
-            },
-            {
-                "question": "26. Təsvirin həlli (разрешение) dedikdə nə başa düşülür?",
-                "options": {
-                    "A": "Təsvirin özünün xassəsi",
-                    "B": "Kompyüter sisteminin xassəsi",
-                    "C": "Əməliyyat sisteminin xassəsi",
-                    "D": "Printerin xassəsi",
-                    "E": "Monitorun xassəsi"
-                },
-                "correct_answer": "A"
-            },
-            {
-                "question": "27. 1 dyüm neçə mm-dir?",
-                "options": {
-                    "A": "25,4 mm",
-                    "B": "24,5 mm",
-                    "C": "24,56 mm",
-                    "D": "20,4 mm",
-                    "E": "25,46 mm"
-                },
-                "correct_answer": "A"
-            },
-            {
-                "question": "28. Kompyüter qrafikasında hansı proqramlar eyni interfeysə malikdir, yaxşı inteqrasiya edilir və bir-birini tamamlayır?",
-                "options": {
-                    "A": "Makromedia və PhotoDraw",
-                    "B": "Photoshop və Corel Draw",
-                    "C": "Adobe İllustrator və Adobe Photoshop",
-                    "D": "AutoCAD və Makromedia Freehand",
-                    "E": "Corel Draw və Photoshop"
-                },
-                "correct_answer": "C"
-            },
-            {
-                "question": "29. Animasiyalı CAD sistemlərinə aşağıdakılardan hansını aid etmək olar?",
-                "options": {
-                    "A": "AutoCAD və ArchiCAD",
-                    "B": "Fleş animatorları",
-                    "C": "AutoCAD və MatLAB",
-                    "D": "MathCAD və MatLAB",
-                    "E": "Fleş animatorlar və MatLAB"
-                },
-                "correct_answer": "B"
-            },
-
-            {
-                "question": "30. Qrafik redaktorlardada alətlərindən biridir.",
-                "options": {
-                    "A": "karandaş, fırça, pozan",
-                    "B": "xətt, dairə, düzbucaqlı",
-                    "C": "seçilməsi, surəti, pastası",
-                    "D": "Rəng dəstləri",
-                    "E": "Piramida, silindr, konus"
-                },
-                "correct_answer": "A"
-            },
-            {
-                "question": "31. Qrafik redaktorun əsas funksiyalarındandır:",
-                "options": {
-                    "A": "görüntülərin yaradılması və emal edilməsi.",
-                    "B": "görüntünü kod ilə yaddaşda saxlamaq",
-                    "C": "video yaddaşda mətnlərin emalı",
-                    "D": "təsvirin scan edilməsi",
-                    "E": "OpenGL ilə əlaqə yaratmaq"
-                },
-                "correct_answer": "A"
-            },
-            {
-                "question": "32. Adobe Photoshop proqramında fayllar hansı formatda saxlanıla bilər?",
-                "options": {
-                    "A": "PNG",
-                    "B": "PCX",
-                    "C": "PSD",
-                    "D": "EPS",
-                    "E": "GIF"
-                },
-                "correct_answer": "C"
-            },
-            {
-                "question": "33. Hansı formada raster fontu (şrifti) kompüterin yaddaşında saxlanılır?",
-                "options": {
-                    "A": "bitmap şəklində",
-                    "B": "yığın şəklində",
-                    "C": "matris formasında",
-                    "D": "string formatında",
-                    "E": "piksel formasında"
-                },
-                "correct_answer": "A"
-            },
-            {
-                "question": "34. Hansı xətlər Bezye əyriləri deyil?",
-                "options": {
-                    "A": "eksponensial",
-                    "B": "polinomial funksiyalarla verilən",
-                    "C": "kvadratik",
-                    "D": "kubik",
-                    "E": "parçalı düz"
-                },
-                "correct_answer": "E"
-            },
-            {
-                "question": "35. Raster qrafikasında hansı formada şrift yaddaşda saxlanılır?",
-                "options": {
-                    "A": "raster şəklində",
-                    "B": "string",
-                    "C": "bir yığın şəklində",
-                    "D": "matris formasında",
-                    "E": "fraktal formasında"
-                },
-                "correct_answer": "A"
-            },
-            {
-                "question": "36. OCR (Optical Character Recognition) texnologiyalar nə üçün istifadə olunur?",
-                "options": {
-                    "A": "mətnlərdə qrammatik və orfoqrafik səhvlərinin tapılmasında",
-                    "B": "mətnlərin formatlaşdırılmasında",
-                    "C": "mətnin optik tanınması sistemlərində və belə sistemlərin yaradılmasında",
-                    "D": "mətnlərin inteqrasiya olunmasında",
-                    "E": "mətnlərin vizuallaşdırılmasında"
-                },
-                "correct_answer": "C"
-            },
-            {
-                "question": "37. AutoCad proqramının vəziyyət çubuğunda neçə rejim düyməsi var?",
-                "options": {
-                    "A": "8",
-                    "B": "7",
-                    "C": "10",
-                    "D": "9",
+                    "A": "4",
+                    "B": "2",
+                    "C": "3",
+                    "D": "1",
                     "E": "5"
                 },
-                "correct_answer": "C"
+                "correct_answer": "A"
             },
             {
-                "question": "38. Corel Draw proqramında üst-üstə olan fiqurlardan birincini sonda yerləşdirmək üçün hansı düymələrdən istifadə olunur?",
+                "question": "36. Choose the logically correct ending. The ground is covered with snow. Let’s go to the yard and…",
                 "options": {
-                    "A": "[Ctrl]+[PageDown] düymələri",
-                    "B": "[Shift]+[PageUp] düymələri",
-                    "C": "[Shift]+[PageDown] düymələri",
-                    "D": "[Shift]+[End] düymələri",
-                    "E": "[Ctrl]+[F4] düymələri"
-                },
-                "correct_answer": "C"
-            },
-            {
-                "question": "39. İnsan gözü 4096 müxtəlif rəngi fərqləndirə bilir. Ən azı neçə bitlə bu qədər rəngi ikilik kodlaşdırmaq olar?",
-                "options": {
-                    "A": "12 bit",
-                    "B": "10 bit",
-                    "C": "20 bit",
-                    "D": "11 bit",
-                    "E": "15 bit"
+                    "A": "make a snowman.",
+                    "B": "swim in the river.",
+                    "C": "lie in the sun.",
+                    "D": "sit down in the shadow.",
+                    "E": "pick up flowers."
                 },
                 "correct_answer": "A"
             },
             {
-                "question": "40. BMP formatı hansı proqram vasitəsilə yaradılır?",
+                "question": "37. Choose the logically correct ending. The woman going to the park is not in a hurry because…",
                 "options": {
-                    "A": "Adobe Illustrator",
-                    "B": "Adobe Photoshop",
-                    "C": "Corel Draw",
-                    "D": "Paint",
-                    "E": "Free Hand"
-                },
-                "correct_answer": "D"
-            },
-            {
-                "question": "40. BMP formatı hansı proqram vasitəsilə yaradılır?",
-                "options": {
-                    "A": "Adobe Illustrator",
-                    "B": "Adobe Photoshop",
-                    "C": "Corel Draw",
-                    "D": "Paint",
-                    "E": "Free Hand"
-                },
-                "correct_answer": "D"
-            },
-            {
-                "question": "41. RGB modelində aşağıdakı parametrlər quraşdırılmışdır: 255, 0, 0. Bu parametrlərə hansı rəng uyğun gələcəkdir?",
-                "options": {
-                    "A": "sarı",
-                    "B": "göy",
-                    "C": "yaşıl",
-                    "D": "qırmızı",
-                    "E": "qara"
-                },
-                "correct_answer": "D"
-            },
-            {
-                "question": "42. 10x10 ölçüdə rəngli şəkil (256 rəng) üçün ikilik kodlaşmada nə qədər yaddaş tələb olunur?",
-                "options": {
-                    "A": "100 bit",
-                    "B": "100 bayt",
-                    "C": "400 bit",
-                    "D": "800 bayt",
-                    "E": "200 bit"
-                },
-                "correct_answer": "B"
-            },
-            {
-                "question": "43. Adobe Photoshop proqramında Filter >> Distort >> Ripple ?",
-                "options": {
-                    "A": "mozaik effekti verir",
-                    "B": "zəlzələ efekti verir",
-                    "C": "dalğa efekti verir",
-                    "D": "ışıltı effekti verir",
-                    "E": "bütün cavablar səhvdir"
-                },
-                "correct_answer": "C"
-            },
-            {
-                "question": "44. Adobe Photoshop proqramında Filter >> Stylize >> Wind ?",
-                "options": {
-                    "A": "dalğa effekti verir",
-                    "B": "zəlzələ efekti verir",
-                    "C": "mozaik effekti verir",
-                    "D": "ışıltı effekti verir",
-                    "E": "küləkli yayılma effekti verir"
+                    "A": "She is so busy.",
+                    "B": "She is afraid to be late.",
+                    "C": "She has little time.",
+                    "D": "Her children are waiting for her there.",
+                    "E": "She has got a lot of time."
                 },
                 "correct_answer": "E"
             },
             {
-                "question": "45. Adobe Photoshop proqramında Layers pəncərəsində Opacity nəyin göstəricisidir?",
+                "question": "38. Choose the logically correct ending. Fred’s handwriting was so bad that …",
                 "options": {
-                    "A": "Layın formasının",
-                    "B": "Layın yerinin",
-                    "C": "Layın rənginin",
-                    "D": "Layın şəffaflığının",
-                    "E": "bütün cavablar səhvdir"
-                },
-                "correct_answer": "D"
-            },
-            {
-                "question": "46. Adobe Photoshop proqramında Filter >> Distort >> Shear?",
-                "options": {
-                    "A": "Açılan pəncərədəki oxu sağa-sola dartaraq şəklə əyrilik effekti verir.",
-                    "B": "kölgə verir",
-                    "C": "rəngin tonunu, dolğunluğunu, işıqlığını dəyişir",
-                    "D": "küləkli yayılma effekti verir",
-                    "E": "mozaik effekti verir"
-                },
-                "correct_answer": "A"
-            },
-            {
-                "question": "47. Adobe Photoshop proqramında 'Eraser Tool' aləti nə üçündür?",
-                "options": {
-                    "A": "Seçilən bir sahəni və ya layı yerini dəyişmək üçün",
-                    "B": "Silmə aləti (pozan). Şəkildə lazım olmayan hissələri silmək üçün",
-                    "C": "Şəklin kənarındakı artıqları kəsmək və fırlatmaq üçün",
-                    "D": "Şəkil üzərində sərbəst sahə seçmək üçün",
-                    "E": "Obyekti seçilmiş rəng ilə doldurmaq üçün"
+                    "A": "I could read it easily.",
+                    "B": "Nobody could read it.",
+                    "C": "I was delighted to read it.",
+                    "D": "Everybody was pleased to read it.",
+                    "E": "We all read it at once."
                 },
                 "correct_answer": "B"
             },
             {
-                "question": "48. Kompüter qrafikasında əsasən neçə rəng modelindən istifadə olunur?",
+                "question": "39. Choose the logically correct ending. He spoke quickly and angrily, so the child …",
                 "options": {
-                    "A": "5",
-                    "B": "4",
-                    "C": "6",
-                    "D": "2",
-                    "E": "3"
-                },
-                "correct_answer": "E"
-            },
-            {
-                "question": "49. RGB modelində hər bir rəngin dəyişmə tezliyi hansı intervaldadır? (bu tezlik hər üç rəng üçün ... intervalında dəyişir)",
-                "options": {
-                    "A": "0-255",
-                    "B": "0-256",
-                    "C": "0-512",
-                    "D": "1-256",
-                    "E": "1-255"
+                    "A": "Understood nothing.",
+                    "B": "Looked satisfied.",
+                    "C": "Enjoyed himself.",
+                    "D": "Was very pleased.",
+                    "E": "Listened to him with pleasure."
                 },
                 "correct_answer": "A"
             },
             {
-                "question": "50. Çap üçün yüksək keyfiyyətli təsvirlərin saxlanılmasında hansı formatdan istifadə olunur?",
+                "question": "40. Choose the logically correct ending. They were very tired because…",
                 "options": {
-                    "A": "BMP",
-                    "B": "JPG",
-                    "C": "TIFF",
-                    "D": "PNG",
-                    "E": "GIF"
+                    "A": "They had had a good rest.",
+                    "B": "They had hardly done anything.",
+                    "C": "They had worked hard.",
+                    "D": "They slept eight hours a day.",
+                    "E": "They did nothing but rest."
                 },
                 "correct_answer": "C"
+            },
+            {
+                "question": "41. Choose the proper answer. What does Nick look like?",
+                "options": {
+                    "A": "He likes parties.",
+                    "B": "He is very honest and faithful.",
+                    "C": "He looks after his children well.",
+                    "D": "He has got large black eyes and he is very handsome.",
+                    "E": "He is very generous."
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "42. Choose the logically correct ending. Tom’s handwriting was so bad that…",
+                "options": {
+                    "A": "The teacher praised him.",
+                    "B": "I could easily read everything he wrote.",
+                    "C": "Everybody could understand it.",
+                    "D": "The teacher always scolded him.",
+                    "E": "We enjoyed reading it."
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "43. Choose the logically correct ending. It was dark because…",
+                "options": {
+                    "A": "The sun was shining brightly.",
+                    "B": "Somebody had switched off the lights.",
+                    "C": "I could see everything clearly.",
+                    "D": "I had switched on the lights.",
+                    "E": "The room was full of sunshine."
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "44. Choose the logically correct ending. I reached my office in time as I..",
+                "options": {
+                    "A": "Had missed my usual train.",
+                    "B": "Lived farthest of all.",
+                    "C": "Had caught the fastest train.",
+                    "D": "Had left home later than usual.",
+                    "E": "Hadn’t woken up in time."
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "45. Choose the logically correct ending. The weather is fine today because…",
+                "options": {
+                    "A": "There are no clouds in the sky.",
+                    "B": "There are a lot of clouds in the sky.",
+                    "C": "It is too foggy.",
+                    "D": "There is a terrible storm.",
+                    "E": "A strong wind is blowing."
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "46. Choose the logically correct ending. The teacher was so angry with the boys that she…",
+                "options": {
+                    "A": "Smiled at them.",
+                    "B": "Praised them.",
+                    "C": "Didn’t let them come into the classroom.",
+                    "D": "Greeted them heartily.",
+                    "E": "Received them with pleasure."
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "47. Choose the logically correct ending. Milk smells unpleasant if…",
+                "options": {
+                    "A": "It is not fresh.",
+                    "B": "It is kept in the refrigerator for an hour.",
+                    "C": "We boil it.",
+                    "D": "It is fresh.",
+                    "E": "It is newly produced."
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "48. Choose the logically correct ending. Roses die if…",
+                "options": {
+                    "A": "We water them regularly.",
+                    "B": "They are not watered at all.",
+                    "C": "You smell them.",
+                    "D": "We look after them.",
+                    "E": "They are kept in good conditions."
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "49. Choose the correct variant. - … - Thanks. The same to you.",
+                "options": {
+                    "A": "It’s a lovely day.",
+                    "B": "Happy Holiday",
+                    "C": "Don’t mention it.",
+                    "D": "Never mind.",
+                    "E": "Sorry, I have a toothache."
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "50. Choose the correct logical ending. Trees are very important because they…",
+                "options": {
+                    "A": "Produce oxygen.",
+                    "B": "Pollute the air.",
+                    "C": "Are harmful.",
+                    "D": "Kill everything around.",
+                    "E": "Aren’t useful for health."
+                },
+                "correct_answer": "A"
             }
-
-
         ]
-
         let pageQuestion = 0;
         for (let i = 0; i < 50; i++) {
             Cavab.push(undefined);
