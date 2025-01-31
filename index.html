@@ -14,6 +14,10 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        html{
+            overflow: hidden;
+        }
+
         body {
             display: flex;
             flex-direction: column;
@@ -175,6 +179,40 @@
         i {
             margin-left: 20px;
         }
+
+        .lock-window{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100%;
+            width: 100%;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.582);
+            z-index: 100;
+            top: 0px;
+            left: 0px;
+        }
+        .lock-window .form{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            
+            input{
+                padding: 10px 20px;
+                outline: none;
+                border: none;
+            }
+            button{
+                padding: 10px 12px 12px 12px; 
+                font-size: 20px;
+                border-radius: 20px;
+                border: none;
+                font-weight: 500;
+                background-color: green;
+                color: #fff;
+                
+            }
+        }
     </style>
 </head>
 
@@ -212,11 +250,16 @@
         <span>Doğruluq Faizlə </span> <span>00 </span>
         <button onclick="quizWiev()">Testə Baxış</button>
         <h1>Hazırladı: Melikov Huseyn </h1>
-        
     </div>
 
     <div class="resultQuiz">
 
+    </div>
+    <div class="lock-window">
+        <div class="form">
+            <input type="text" placeholder="parolu daxil et">
+            <button onclick="checkPassword(this)">Login</button>
+        </div>
     </div>
 
     <script>
@@ -224,6 +267,38 @@
         const container = document.querySelector(".container");
         const result = document.querySelector(".Result");
         const resultquiz = document.querySelector(".resultQuiz");
+        let password;
+        if(localStorage.getItem("data")){
+            password = JSON.parse(localStorage.getItem("data"));
+        }else{
+            password = [{parol: "CGAIX", status: false },{parol: "ASMBA", status: false },{parol: "SESLO", status: false },{parol: "QAFRI", status: false },{parol: "PENDIR",status: "always-open" }];
+        }
+
+        localStorage.setItem("data",JSON.stringify(password));
+
+        function checkPassword (btn) {
+            let input = (btn.parentElement).querySelector("input");
+            password = JSON.parse(localStorage.getItem("data"));
+            password.forEach(obj => {
+                if(obj.parol == input.value){
+                    if(obj.status == false){
+                        (btn.parentElement).parentElement.style.display = "none";
+                        obj.status = true;
+                    }else if(obj.status == true){
+                        input.value = ""
+                        input.placeholder = "Bu parol istifadə olundu"
+                    }
+                    if(obj.status == "always-open"){
+            
+                        (btn.parentElement).parentElement.style.display = "none";
+                    }
+                }
+            });
+            localStorage.setItem("data",JSON.stringify(password));
+
+            
+        }
+        
         const Cavab = [];
         let DATA = [
 
