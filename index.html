@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Ingilis-Dili</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            gap: 50px;
+            padding: 10px;
+        }
+
+        .testBox {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+
+        }
+
+        .testBox .nn {
+            display: grid;
+            grid-template-columns: 70px 75%;
+            grid-template-rows: repeat(5, auto);
+            gap: 10px;
+        }
+
+        .Result {
+            width: 90%;
+            display: none;
+            justify-content: center;
+            grid-template-columns: repeat(2, 40%);
+            grid-template-rows: repeat(3, 70px);
+            gap: 10px;
+        }
+
+        .Result span {
+            line-height: 70px;
+            text-align: center;
+            background-color: aliceblue;
+            border: 1px solid rgb(17, 73, 177)
+        }
+
+        .Result button {
+            grid-area: 4/1/4/3;
+            height: 60px;
+            font-size: 25px;
+            background-color: rgb(17, 73, 177);
+            border: none;
+            border-radius: 10px;
+            color: #Fff;
+            transition: 0.1s;
+
+        }
+
+        .Result h1 {
+            grid-area: 5/1/5/3;
+            font-size: 20px;
+            width: 100%;
+        }
+
+        .Result button:active {
+            scale: 1.1;
+        }
+
+        .container {
+            margin-top: 110px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .testBox h3 {
+            font-size: 23px;
+            word-wrap: break-word;
+        }
+
+        .testBox p {
+            line-height: 1.2;
+            font-size: 20px;
+            word-wrap: break-word;
+
+
+        }
+
+        .btn {
+            font-size: 20px;
+            background-color: rgb(17, 73, 177);
+            border: none;
+            color: #fff;
+            font-weight: 500;
+            min-height: 40px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .fa-xmark {
+            color: rgb(94, 14, 14);
+        }
+
+        .btn:active {
+            scale: 1.1;
+        }
+
+        .fennadi {
+            width: 100%;
+            height: 100px;
+            position: fixed;
+            top: 0;
+            text-align: center;
+            background-color: #fff;
+            line-height: 100px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+
+        }
+
+
+        .control {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        }
+
+        .control button {
+            width: 150px;
+            height: 50px;
+            background-color: rgb(17, 73, 177);
+            border: none;
+            color: #Fff;
+            font-size: 20px;
+            border-radius: 10px;
+            transition: 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .resultQuiz {
+            display: none;
+            margin-top: 100px;
+            flex-direction: column;
+        }
+
+        .control button:active {
+            scale: 1.1;
+        }
+
+        @media (min-width: 600px) {
+            .container {
+                width: 100%;
+                height: 100vh;
+
+            }
+
+            .testBox {
+                width: 100%;
+            }
+
+        }
+
+        i {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="fennadi" style="font-size: 20px;">Ingilis-dili Sınaq</h1>
+    <div class="container">
+
+        <div class="testBox">
+            <h3> QUESTİON H3 </h3>
+            <div class="nn">
+                <button class="btn A">A</button>
+                <p> VARİANT A
+                </p>
+                <button class="btn B">B</button>
+                <p>VARİANT B</p>
+                <button class="btn C">C</button>
+                <p>VARİANT C</p>
+                <button class="btn D">D</button>
+                <p>VARİANT D</p>
+                <button class="btn E">E</button>
+                <p>VARİANT E</p>
+            </div>
+
+        </div>
+
+        <div class="control">
+            <button onclick="prev()" class="prev">Geri</button>
+            <button onclick="next(this)" class="next">İrəli</button>
+        </div>
+    </div>
+
+    <div class="Result">
+        <span>Doğru: </span> <span>00 </span>
+        <span>Səhv: </span> <span>00</span>
+        <span>Doğruluq Faizlə </span> <span>00 </span>
+        <button onclick="quizWiev()">Testə Baxış</button>
+        <h1>Hazırladı: Melikov Huseyn </h1>
+        
+    </div>
+
+    <div class="resultQuiz">
+
+    </div>
+
+    <script>
+        const testBox = document.querySelector(".testBox");
+        const container = document.querySelector(".container");
+        const result = document.querySelector(".Result");
+        const resultquiz = document.querySelector(".resultQuiz");
+        const Cavab = [];
+        let DATA = [
+
+            {
+                "question": "1. Yüksək keyfiyyətli təsvirlərin saxlanılmasında hansı formatdan istifadə olunur?",
+                "options": {
+                    "A": "GIF",
+                    "B": "JPG",
+                    "C": "BMP",
+                    "D": "PNG",
+                    "E": "Tiff"
+                },
+                "correct_answer": "E"
+            },
+            {
+                "question": "2. Kompüter qrafikasının məqsədi nədir?",
+                "options": {
+                    "A": "diaqramlar və cədvəllər üzərində işləmək",
+                    "B": "qrafiki alətlər üzərində işləmək üçündür",
+                    "C": "mətndə qrafiklər yaratmaq",
+                    "D": "təsvirlərin yaradılması metodunu öyrədir",
+                    "E": "İnternet-də işləmək üçündür"
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "3. Qrafiki redaktor proqramlarının əsas təyinatı nədir?",
+                "options": {
+                    "A": "mətnin qrafiki obrazını yaratmaq",
+                    "B": "qrafiki təsvirlərlə işləmək",
+                    "C": "şriftin növünü və şəklini redaktə etmək",
+                    "D": "diaqramları və cədvəlləri qurmaq",
+                    "E": "şəkil çəkmək"
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "4. Çapa keyfiyyətli rəngli şəkil hazırlamaq üçün faylın ... dpi həllində olması vacibdir",
+                "options": {
+                    "A": "200-300 dpi",
+                    "B": "64-98 dpi",
+                    "C": "72 dpi",
+                    "D": "75 dpi",
+                    "E": "100-200 dpi"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "5. RGB modeli ...",
+                "options": {
+                    "A": "çatışmayan cəhəti ondan ibarətdir ki, nəzəri olaraq bəzi rəngləri əldə etmək olmur",
+                    "B": "additiv metodla işləyir",
+                    "C": "bütün rənglər 3 əsas rəngin (Red-qırmızı, Green-yaşıl, Blue-göy) qarışığından və onların çalarlarından yaranır",
+                    "D": "bütün cavablar doğrudur",
+                    "E": "əksər FK-lar və istifadə etdiyimiz televizorlar bu modellə işləyirlər"
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "6. Təhlükəsiz palitrada neçə rəng çalarından istifadə olunur?",
+                "options": {
+                    "A": "2",
+                    "B": "256",
+                    "C": "255",
+                    "D": "216",
+                    "E": "16"
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "7. GİF(Graphics İnterhange Format) neçə rəngçalarları əsasında təsvirlərin sıxılmış mühafizəsini təmin edir?",
+                "options": {
+                    "A": "258",
+                    "B": "254",
+                    "C": "256",
+                    "D": "257",
+                    "E": "252"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "8. Aşağıdakılardan hansı rastrlı qrafik redaktorların ad genişlənməsi deyil?",
+                "options": {
+                    "A": "GIF",
+                    "B": "AI",
+                    "C": "CS",
+                    "D": "TIF",
+                    "E": "JPG"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "9. Corel Draw proqramında təsvirin kənarlarını hazır bəzəkli şablona çevirmək üçün ... əmrini seçmək lazımdır.",
+                "options": {
+                    "A": "Bitmaps→3D Effects→3D Rotate",
+                    "B": "Bitmaps→3D Effects→Page Curl",
+                    "C": "Bitmaps→Contour→Find Edges",
+                    "D": "Bitmaps→Creative→Vignette",
+                    "E": "Bitmaps→Creative→Frame"
+                },
+                "correct_answer": "E"
+            },
+            {
+                "question": "10. Corel Draw proqramında düzbucaqlı alətini seçib CTRL kombinasiyası ilə çəkəndə ... alınacaq.",
+                "options": {
+                    "A": "Üçbucaq",
+                    "B": "Kvadrat",
+                    "C": "Paraleloqram",
+                    "D": "Dördbucaq",
+                    "E": "Trapesiya"
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "11. Adobe Photoshop proqramında yeni lay yaratmaq üçün hansı kombinasiyadan istifadə edirik?",
+                "options": {
+                    "A": "Alt+N",
+                    "B": "Ctrl+N",
+                    "C": "Shift+Ctrl+N",
+                    "D": "Tab+N",
+                    "E": "Shift+Alt+N"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "12. Adobe Photoshop proqramında Layer >>Layer style>> Drop Shadow?",
+                "options": {
+                    "A": "kölgə verir",
+                    "B": "işıq verir",
+                    "C": "damcı effekti verir",
+                    "D": "rəngi dəyişir",
+                    "E": "bütün cavablar səhfdir"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "13. Adobe Acrobat Reader proqramı hansı iş üçün nəzərdə tutulub?",
+                "options": {
+                    "A": "AAR fayllarının oxunması",
+                    "B": "DOC fayllarının redaktəsi",
+                    "C": "PDF fayllarının redaktəsi",
+                    "D": "DOC fayllarının redaktəsi",
+                    "E": "PDF fayllarının oxunması"
+                },
+                "correct_answer": "E"
+            },
+            {
+                "question": "14. 512x256 ölçüsündə olan 8 ədəd CMYK təsvir yaddaşda neçə MB yer tutar?",
+                "options": {
+                    "A": "2 MB",
+                    "B": "4 MB",
+                    "C": "8 MB",
+                    "D": "16 MB",
+                    "E": "32 MB"
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "15. Həcmi 12Mb olan video informasiyanın ekranının 512x256 rejimində, 8 kadr/san sürətinə malik olduğunu bilərək 16 saniyəlik bu video faylin neçə rəng çalarından ibarət olduğunu tapın?",
+                "options": {
+                    "A": "64",
+                    "B": "6",
+                    "C": "32",
+                    "D": "64",
+                    "E": "16"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "16. Həcmi 120Mb olan video informasiyanın ekranının 512x256 rejimində, 16 rəng tərtibinə malikdirsə, 2 dəqiqəlik bu video faylda kadrların 1 saniyədəki sürətini tapın.",
+                "options": {
+                    "A": "24",
+                    "B": "12",
+                    "C": "32",
+                    "D": "16",
+                    "E": "64"
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "17. Sarı və al-qırmızı subtraktiv rəngləri qarışdırdıqda ... rəng alınır:",
+                "options": {
+                    "A": "bənövşəyi",
+                    "B": "yaşıl",
+                    "C": "qırmızı",
+                    "D": "göy",
+                    "E": "boz"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "18. Müxtəlif rəngli işıq şüalarının birləşməsi nəticəsində yaranan rəng necə adlanır?",
+                "options": {
+                    "A": "additiv",
+                    "B": "subtraktiv",
+                    "C": "kompleks",
+                    "D": "toplam",
+                    "E": "yekun"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "19. Rəngin saflığını xarakterizə edən kəmiyyət necə adlanır?",
+                "options": {
+                    "A": "Hue",
+                    "B": "animation",
+                    "C": "PostScript",
+                    "D": "Nurbs",
+                    "E": "saturation"
+                },
+                "correct_answer": "E"
+            },
+            {
+                "question": "20. OpenOffice.org paketi Microsoft Office paketindən nə ilə fərqlənir?",
+                "options": {
+                    "A": "İşgüzar qrafikası ilə işləyir",
+                    "B": "Rastr qrafikası ilə işləyir",
+                    "C": "Elmi qrafikası ilə işləyir",
+                    "D": "Vektor qrafikası ilə işləyir",
+                    "E": "Konstruktor qrafikası ilə işləyir"
+                },
+                "correct_answer": "D"
+            },
+
+            {
+                "question": "21. Paint.net proqramının Quick Start pəncərəsində Open other… düyməsi nə üçün istifadə olunur?",
+                "options": {
+                    "A": "Yaddaşda olan qrafikanı açmaq üçün",
+                    "B": "Yeni fayl yaratmaq üçün",
+                    "C": "Buferində olan şəkili gətirmək üçün",
+                    "D": "Skanerdən şəkili oxutdurmaq üçün",
+                    "E": "Yaradılmış qrafikanı printerlə çap etmək üçün"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "22. Paint.net proqramının standart alətlər paneli üzərində yerləşən düymələr haqqında verilənlərdən biri yanlışdır:",
+                "options": {
+                    "A": "Copy – Obyektin üzünü köçürüb mübadilə buferinə yerləşdirir",
+                    "B": "Cut – Şəkli miqyaslaşdırır",
+                    "C": "Open – Yaddaşda saxlanmış faylı ekrana çıxarır",
+                    "D": "Import – Açıq olan fayla şəkili mədaxil edir",
+                    "E": "Zoom level – Şəkili miqyaslaşdırır"
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "23. OpenOffice.org Draw proqramında Gluepoints alətlər paneli üzərində əyri üzərinə yeni redaktə düyünləri əlavə edir:",
+                "options": {
+                    "A": "Insert GluePoints",
+                    "B": "Exit Direction Left",
+                    "C": "Exit Direction Top",
+                    "D": "Exit Direction Right",
+                    "E": "Glue Point Relative"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "24. Kompyüter qrafikasına aid deyil:",
+                "options": {
+                    "A": "Rastr",
+                    "B": "Fine Reader",
+                    "C": "Vektor",
+                    "D": "Fraktal",
+                    "E": "Vektor və Rastr"
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "25. İnternetdə kompyüter qrafikasının hansı növü tətbiq olunur?",
+                "options": {
+                    "A": "Bütün növləri",
+                    "B": "Vektor",
+                    "C": "Fraktal",
+                    "D": "Rastr",
+                    "E": "Heç biri"
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "26. Təsvirin həlli (разрешение) dedikdə nə başa düşülür?",
+                "options": {
+                    "A": "Təsvirin özünün xassəsi",
+                    "B": "Kompyüter sisteminin xassəsi",
+                    "C": "Əməliyyat sisteminin xassəsi",
+                    "D": "Printerin xassəsi",
+                    "E": "Monitorun xassəsi"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "27. 1 dyüm neçə mm-dir?",
+                "options": {
+                    "A": "25,4 mm",
+                    "B": "24,5 mm",
+                    "C": "24,56 mm",
+                    "D": "20,4 mm",
+                    "E": "25,46 mm"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "28. Kompyüter qrafikasında hansı proqramlar eyni interfeysə malikdir, yaxşı inteqrasiya edilir və bir-birini tamamlayır?",
+                "options": {
+                    "A": "Makromedia və PhotoDraw",
+                    "B": "Photoshop və Corel Draw",
+                    "C": "Adobe İllustrator və Adobe Photoshop",
+                    "D": "AutoCAD və Makromedia Freehand",
+                    "E": "Corel Draw və Photoshop"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "29. Animasiyalı CAD sistemlərinə aşağıdakılardan hansını aid etmək olar?",
+                "options": {
+                    "A": "AutoCAD və ArchiCAD",
+                    "B": "Fleş animatorları",
+                    "C": "AutoCAD və MatLAB",
+                    "D": "MathCAD və MatLAB",
+                    "E": "Fleş animatorlar və MatLAB"
+                },
+                "correct_answer": "B"
+            },
+
+            {
+                "question": "30. Qrafik redaktorlardada alətlərindən biridir.",
+                "options": {
+                    "A": "karandaş, fırça, pozan",
+                    "B": "xətt, dairə, düzbucaqlı",
+                    "C": "seçilməsi, surəti, pastası",
+                    "D": "Rəng dəstləri",
+                    "E": "Piramida, silindr, konus"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "31. Qrafik redaktorun əsas funksiyalarındandır:",
+                "options": {
+                    "A": "görüntülərin yaradılması və emal edilməsi.",
+                    "B": "görüntünü kod ilə yaddaşda saxlamaq",
+                    "C": "video yaddaşda mətnlərin emalı",
+                    "D": "təsvirin scan edilməsi",
+                    "E": "OpenGL ilə əlaqə yaratmaq"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "32. Adobe Photoshop proqramında fayllar hansı formatda saxlanıla bilər?",
+                "options": {
+                    "A": "PNG",
+                    "B": "PCX",
+                    "C": "PSD",
+                    "D": "EPS",
+                    "E": "GIF"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "33. Hansı formada raster fontu (şrifti) kompüterin yaddaşında saxlanılır?",
+                "options": {
+                    "A": "bitmap şəklində",
+                    "B": "yığın şəklində",
+                    "C": "matris formasında",
+                    "D": "string formatında",
+                    "E": "piksel formasında"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "34. Hansı xətlər Bezye əyriləri deyil?",
+                "options": {
+                    "A": "eksponensial",
+                    "B": "polinomial funksiyalarla verilən",
+                    "C": "kvadratik",
+                    "D": "kubik",
+                    "E": "parçalı düz"
+                },
+                "correct_answer": "E"
+            },
+            {
+                "question": "35. Raster qrafikasında hansı formada şrift yaddaşda saxlanılır?",
+                "options": {
+                    "A": "raster şəklində",
+                    "B": "string",
+                    "C": "bir yığın şəklində",
+                    "D": "matris formasında",
+                    "E": "fraktal formasında"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "36. OCR (Optical Character Recognition) texnologiyalar nə üçün istifadə olunur?",
+                "options": {
+                    "A": "mətnlərdə qrammatik və orfoqrafik səhvlərinin tapılmasında",
+                    "B": "mətnlərin formatlaşdırılmasında",
+                    "C": "mətnin optik tanınması sistemlərində və belə sistemlərin yaradılmasında",
+                    "D": "mətnlərin inteqrasiya olunmasında",
+                    "E": "mətnlərin vizuallaşdırılmasında"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "37. AutoCad proqramının vəziyyət çubuğunda neçə rejim düyməsi var?",
+                "options": {
+                    "A": "8",
+                    "B": "7",
+                    "C": "10",
+                    "D": "9",
+                    "E": "5"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "38. Corel Draw proqramında üst-üstə olan fiqurlardan birincini sonda yerləşdirmək üçün hansı düymələrdən istifadə olunur?",
+                "options": {
+                    "A": "[Ctrl]+[PageDown] düymələri",
+                    "B": "[Shift]+[PageUp] düymələri",
+                    "C": "[Shift]+[PageDown] düymələri",
+                    "D": "[Shift]+[End] düymələri",
+                    "E": "[Ctrl]+[F4] düymələri"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "39. İnsan gözü 4096 müxtəlif rəngi fərqləndirə bilir. Ən azı neçə bitlə bu qədər rəngi ikilik kodlaşdırmaq olar?",
+                "options": {
+                    "A": "12 bit",
+                    "B": "10 bit",
+                    "C": "20 bit",
+                    "D": "11 bit",
+                    "E": "15 bit"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "40. BMP formatı hansı proqram vasitəsilə yaradılır?",
+                "options": {
+                    "A": "Adobe Illustrator",
+                    "B": "Adobe Photoshop",
+                    "C": "Corel Draw",
+                    "D": "Paint",
+                    "E": "Free Hand"
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "40. BMP formatı hansı proqram vasitəsilə yaradılır?",
+                "options": {
+                    "A": "Adobe Illustrator",
+                    "B": "Adobe Photoshop",
+                    "C": "Corel Draw",
+                    "D": "Paint",
+                    "E": "Free Hand"
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "41. RGB modelində aşağıdakı parametrlər quraşdırılmışdır: 255, 0, 0. Bu parametrlərə hansı rəng uyğun gələcəkdir?",
+                "options": {
+                    "A": "sarı",
+                    "B": "göy",
+                    "C": "yaşıl",
+                    "D": "qırmızı",
+                    "E": "qara"
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "42. 10x10 ölçüdə rəngli şəkil (256 rəng) üçün ikilik kodlaşmada nə qədər yaddaş tələb olunur?",
+                "options": {
+                    "A": "100 bit",
+                    "B": "100 bayt",
+                    "C": "400 bit",
+                    "D": "800 bayt",
+                    "E": "200 bit"
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "43. Adobe Photoshop proqramında Filter >> Distort >> Ripple ?",
+                "options": {
+                    "A": "mozaik effekti verir",
+                    "B": "zəlzələ efekti verir",
+                    "C": "dalğa efekti verir",
+                    "D": "ışıltı effekti verir",
+                    "E": "bütün cavablar səhvdir"
+                },
+                "correct_answer": "C"
+            },
+            {
+                "question": "44. Adobe Photoshop proqramında Filter >> Stylize >> Wind ?",
+                "options": {
+                    "A": "dalğa effekti verir",
+                    "B": "zəlzələ efekti verir",
+                    "C": "mozaik effekti verir",
+                    "D": "ışıltı effekti verir",
+                    "E": "küləkli yayılma effekti verir"
+                },
+                "correct_answer": "E"
+            },
+            {
+                "question": "45. Adobe Photoshop proqramında Layers pəncərəsində Opacity nəyin göstəricisidir?",
+                "options": {
+                    "A": "Layın formasının",
+                    "B": "Layın yerinin",
+                    "C": "Layın rənginin",
+                    "D": "Layın şəffaflığının",
+                    "E": "bütün cavablar səhvdir"
+                },
+                "correct_answer": "D"
+            },
+            {
+                "question": "46. Adobe Photoshop proqramında Filter >> Distort >> Shear?",
+                "options": {
+                    "A": "Açılan pəncərədəki oxu sağa-sola dartaraq şəklə əyrilik effekti verir.",
+                    "B": "kölgə verir",
+                    "C": "rəngin tonunu, dolğunluğunu, işıqlığını dəyişir",
+                    "D": "küləkli yayılma effekti verir",
+                    "E": "mozaik effekti verir"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "47. Adobe Photoshop proqramında 'Eraser Tool' aləti nə üçündür?",
+                "options": {
+                    "A": "Seçilən bir sahəni və ya layı yerini dəyişmək üçün",
+                    "B": "Silmə aləti (pozan). Şəkildə lazım olmayan hissələri silmək üçün",
+                    "C": "Şəklin kənarındakı artıqları kəsmək və fırlatmaq üçün",
+                    "D": "Şəkil üzərində sərbəst sahə seçmək üçün",
+                    "E": "Obyekti seçilmiş rəng ilə doldurmaq üçün"
+                },
+                "correct_answer": "B"
+            },
+            {
+                "question": "48. Kompüter qrafikasında əsasən neçə rəng modelindən istifadə olunur?",
+                "options": {
+                    "A": "5",
+                    "B": "4",
+                    "C": "6",
+                    "D": "2",
+                    "E": "3"
+                },
+                "correct_answer": "E"
+            },
+            {
+                "question": "49. RGB modelində hər bir rəngin dəyişmə tezliyi hansı intervaldadır? (bu tezlik hər üç rəng üçün ... intervalında dəyişir)",
+                "options": {
+                    "A": "0-255",
+                    "B": "0-256",
+                    "C": "0-512",
+                    "D": "1-256",
+                    "E": "1-255"
+                },
+                "correct_answer": "A"
+            },
+            {
+                "question": "50. Çap üçün yüksək keyfiyyətli təsvirlərin saxlanılmasında hansı formatdan istifadə olunur?",
+                "options": {
+                    "A": "BMP",
+                    "B": "JPG",
+                    "C": "TIFF",
+                    "D": "PNG",
+                    "E": "GIF"
+                },
+                "correct_answer": "C"
+            }
+
+
+        ]
+
+        let pageQuestion = 0;
+        for (let i = 0; i < 50; i++) {
+            Cavab.push(undefined);
+        }
+        console.log(Cavab);
+
+        for (let i = 0; i < 5; i++) {
+            let copyBox = testBox.cloneNode(true);
+            container.prepend(copyBox);
+        }
+        const alltestbox = document.querySelectorAll(".testBox");
+        const nn = document.querySelectorAll(".testBox .nn");
+
+        nn.forEach((box, index1) => {
+            let btnss = box.querySelectorAll(".btn");
+            let p = box.querySelectorAll("p");
+            let h3 = box.querySelector("h3");
+
+
+            btnss.forEach((btn, index) => {
+                btn.onclick = () => {
+                    btnss.forEach(btn => {
+                        btn.style.backgroundColor = "rgb(17, 73, 177)";
+                        btn.style.boxShadow = "0px 0px";
+                    })
+                    btn.style.backgroundColor = "Green";
+                    btn.style.boxShadow = "0px 0px 2px 4px rgba(31, 172, 31, 0.7)";
+                    Cavab[(index1 - 1) + pageQuestion] = btn.textContent;
+                    console.log(Cavab);
+                }
+            })
+
+        })
+
+        alltestbox[0].remove();
+
+        const allbox = document.querySelectorAll(".nn");
+        const alltest = document.querySelectorAll(".testBox")
+        for (let i = 0; i < 5; i++) {
+            let h3 = alltest[i].querySelector("h3");
+            let p = allbox[i].querySelectorAll("p");
+            h3.innerHTML = DATA[i].question;
+            p[0].innerText = DATA[i].options.A;
+            p[1].innerText = DATA[i].options.B;
+            p[2].innerText = DATA[i].options.C;
+            p[3].innerText = DATA[i].options.D;
+            p[4].innerText = DATA[i].options.E;
+        }
+        let nextCount = 0;
+        function next(e) {
+            pageQuestion += 5;
+            window.scrollTo(0, 0);
+            console.log(pageQuestion);
+            nextCount = nextCount + 5;
+            console.log(nextCount);
+            let result = document.querySelector(".Result");
+            if (pageQuestion > 45) {
+                container.style.display = "none";
+                result.style.display = "Grid";
+
+                let spans = result.querySelectorAll("span");
+
+                let dogru = 0;
+                let sehv = 0;
+                for (let i = 0; i < Cavab.length; i++) {
+                    if (Cavab[i] == DATA[i].correct_answer) {
+                        dogru++;
+                    } else {
+                        sehv++;
+                    }
+
+                }
+                spans[1].innerText = dogru;
+                spans[3].innerText = sehv;
+                spans[5].innerText = dogru * 2 + ",00 %";
+            }
+            if (nextCount >= 45) {
+                e.style.backgroundColor = "#10ad10";
+                e.innerText = "Finish"
+                console.log(e);
+                nextCount = 45;
+            }
+
+
+
+            let btnss = document.querySelectorAll(".btn");
+            btnss.forEach(btn => {
+                btn.style.backgroundColor = "rgb(17, 73, 177)";
+                btn.style.boxShadow = "0px 0px";
+            })
+
+            const allbox = document.querySelectorAll(".nn");
+            const alltest = document.querySelectorAll(".testBox");
+            let sayy = -1;
+            alltest.forEach(box => {
+                let h3 = box.querySelector("h3").textContent;
+                let buttons = box.querySelectorAll(".btn");
+                sayy++;
+                for (let i = 0; i < buttons.length; i++) {
+                    if (buttons[i].textContent == Cavab[sayy + pageQuestion]) {
+                        buttons[i].style.backgroundColor = "Green";
+                        buttons[i].style.boxShadow = "0px 0px 2px 4px rgba(31, 172, 31, 0.7)";
+
+                    }
+                }
+
+            })
+
+            for (let i = 0; i < 5 + nextCount; i++) {
+                let h3 = alltest[i].querySelector("h3");
+                let p = allbox[i].querySelectorAll("p");
+                h3.innerText = DATA[nextCount + i].question;
+                p[0].innerText = DATA[nextCount + i].options.A;
+                p[1].innerText = DATA[nextCount + i].options.B;
+                p[2].innerText = DATA[nextCount + i].options.C;
+                p[3].innerText = DATA[nextCount + i].options.D;
+                p[4].innerText = DATA[nextCount + i].options.E;
+            }
+
+        }
+
+        function prev() {
+            nextCount = nextCount - 5;
+            pageQuestion -= 5;
+            window.scrollTo(0, 0);
+            if (pageQuestion <= 0) {
+                pageQuestion = 0;
+            }
+            console.log(pageQuestion);
+            if (nextCount <= 0) {
+                nextCount = 0;
+            }
+            let next = document.querySelector(".next");
+            next.style.backgroundColor = "rgb(17, 73, 177)";
+            next.innerText = "İrəli"
+            let btnss = document.querySelectorAll(".btn");
+            btnss.forEach(btn => {
+                btn.style.backgroundColor = "rgb(17, 73, 177)";
+                btn.style.boxShadow = "0px 0px";
+
+            })
+
+
+
+            const allbox = document.querySelectorAll(".nn");
+            const alltest = document.querySelectorAll(".testBox");
+            let sayy = -1;
+            alltest.forEach(box => {
+                let h3 = box.querySelector("h3").textContent;
+                let buttons = box.querySelectorAll(".btn");
+                sayy++;
+                for (let i = 0; i < buttons.length; i++) {
+                    if (buttons[i].textContent == Cavab[sayy + pageQuestion]) {
+                        buttons[i].style.backgroundColor = "Green";
+                        buttons[i].style.boxShadow = "0px 0px 2px 4px rgba(31, 172, 31, 0.7)";
+                    }
+                }
+
+            })
+
+            for (let i = 0; i < 5 + nextCount; i++) {
+                let h3 = alltest[i].querySelector("h3");
+                let p = allbox[i].querySelectorAll("p");
+                h3.innerText = DATA[nextCount + i].question;
+                p[0].innerText = DATA[nextCount + i].options.A;
+                p[1].innerText = DATA[nextCount + i].options.B;
+                p[2].innerText = DATA[nextCount + i].options.C;
+                p[3].innerText = DATA[nextCount + i].options.D;
+                p[4].innerText = DATA[nextCount + i].options.E;
+            }
+
+        }
+
+        let check = -1;
+        function quizWiev() {
+            result.style.display = "none";
+            resultquiz.style.display = "flex";
+
+            DATA.forEach(obj => {
+                check++;
+                let rsbox = document.createElement("div");
+
+                let h3 = document.createElement("h3");
+                let pA = document.createElement("p");
+                let pB = document.createElement("p");
+                let pC = document.createElement("p");
+                let pD = document.createElement("p");
+                let pE = document.createElement("p");
+
+                h3.innerText = obj.question;
+                pA.innerText = "A) " + obj.options.A;
+                pB.innerText = "B) " + obj.options.B;
+                pC.innerText = "C) " + obj.options.C;
+                pD.innerText = "D) " + obj.options.D;
+                pE.innerText = "E) " + obj.options.E;
+
+
+
+                rsbox.appendChild(h3);
+                rsbox.appendChild(pA);
+                rsbox.appendChild(pB);
+                rsbox.appendChild(pC);
+                rsbox.appendChild(pD);
+                rsbox.appendChild(pE);
+                resultquiz.appendChild(rsbox);
+
+                if (obj.correct_answer == Cavab[check]) {
+                    h3.style.backgroundColor = "#1794178e";
+                    pA.style.backgroundColor = "#1794178e";
+                    pB.style.backgroundColor = "#1794178e";
+                    pC.style.backgroundColor = "#1794178e";
+                    pD.style.backgroundColor = "#1794178e";
+                    pE.style.backgroundColor = "#1794178e";
+
+                    let allp = rsbox.querySelectorAll("p");
+
+                    allp.forEach(p => {
+                        if (p.textContent[0] == Cavab[check]) {
+                            p.innerHTML += `<i class="fa-solid fa-check" ></i>`
+                        }
+                    })
+
+
+                    console.log(allp)
+                } else {
+                    h3.style.backgroundColor = "#b1161693";
+                    pA.style.backgroundColor = "#b1161693";
+                    pB.style.backgroundColor = "#b1161693";
+                    pC.style.backgroundColor = "#b1161693";
+                    pD.style.backgroundColor = "#b1161693";
+                    pE.style.backgroundColor = "#b1161693";
+
+                    let allp = rsbox.querySelectorAll("p");
+
+                    allp.forEach(p => {
+                        if (p.textContent[0] == Cavab[check]) {
+                            p.innerHTML += `<i class="fa-solid fa-xmark" ></i>`
+                        }
+                        if (p.textContent[0] == obj.correct_answer) {
+                            p.innerHTML += `<i class="fa-solid fa-check" ></i>`
+
+                        }
+                    })
+                }
+
+            })
+
+        }
+
+
+    </script>
+</body>
+
+</html>
